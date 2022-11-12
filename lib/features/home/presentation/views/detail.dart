@@ -45,6 +45,20 @@ class Details extends StatelessWidget {
                           height: 40.h,
                           width: 40.w,
                         ),
+                        if (country['coatOfArms'] != null)
+                          if (country['coatOfArms']['png'] != null)
+                            FancyShimmerImage(
+                              imageUrl: country['coatOfArms']['png'],
+                              boxFit: BoxFit.cover,
+                              shimmerBackColor: Colors.grey.shade600,
+                              shimmerBaseColor: Colors.grey.shade100,
+                              errorWidget: Image.network(
+                                'https://aeroclub-issoire.fr/wp-content/uploads/2020/05/image-not-found-300x225.jpg',
+                                fit: BoxFit.cover,
+                              ),
+                              height: 40.h,
+                              width: 40.w,
+                            ),
                       ],
                     ),
                     Align(
@@ -224,7 +238,9 @@ class Details extends StatelessWidget {
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
                   TextSpan(
-                    text: '1',
+                    text: (country['independent'] as bool)
+                        ? 'Independent'
+                        : 'Under colonization',
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                 ],
@@ -242,7 +258,7 @@ class Details extends StatelessWidget {
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
                   TextSpan(
-                    text: '',
+                    text: numb.format(country['area']),
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                 ],
@@ -259,10 +275,11 @@ class Details extends StatelessWidget {
                         .bodyText1!
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
-                  TextSpan(
-                    text: '',
-                    style: Theme.of(context).textTheme.bodyText1,
-                  ),
+                  for (var c in (country['currencies'] as Map).entries)
+                    TextSpan(
+                      text: c.key,
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
                 ],
               ),
             ),
@@ -295,10 +312,11 @@ class Details extends StatelessWidget {
                         .bodyText1!
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
-                  TextSpan(
-                    text: '',
-                    style: Theme.of(context).textTheme.bodyText1,
-                  ),
+                  for (var t in (country['timezones'] as List))
+                    TextSpan(
+                      text: '$t, ',
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
                 ],
               ),
             ),
@@ -332,7 +350,7 @@ class Details extends StatelessWidget {
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
                   TextSpan(
-                    text: '',
+                    text: country['idd']['root'],
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                 ],
@@ -350,7 +368,7 @@ class Details extends StatelessWidget {
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
                   TextSpan(
-                    text: '',
+                    text: country['car']['side'],
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                 ],

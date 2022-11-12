@@ -14,6 +14,7 @@ class CountriesUsecase extends Usecase<void, NoParams> {
   final HomeRepo repo;
 
   @override
-  Future<Either<Failure, List<dynamic>>> call(NoParams params) async =>
+  Future<Either<Failure, List<Map<String, List>>>> call(
+          NoParams params) async =>
       await repo.countries();
 }

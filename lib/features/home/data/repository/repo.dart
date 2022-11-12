@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:hng_task_3/core/failures/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:hng_task_3/core/network/impl.dart';
@@ -17,13 +18,35 @@ class HomeRepoImpl implements HomeRepo {
   final RemoteDS remoteDS;
 
   @override
-  Future<Either<Failure, List>> countries() async {
+  Future<Either<Failure, List<Map<String, List>>>> countries() async {
     var res = await formatter.format(() async {
       return await remoteDS.get();
     });
 
     return res.fold((l) => Left(l), (r) {
-      return Right(r);
+      var list = <Map<String, List>>[];
+
+      var group = groupBy(
+        r,
+        (dynamic p0) => p0['name']['common'].split('').first,
+      );
+
+      Logger().d(group.entries.last);
+
+      group.forEach((key, value) {
+        value.sort(
+            ((a, b) => a['name']['common'].compareTo(b['name']['common'])));
+
+        list.add({key: value});
+      });
+
+      list.sort(
+        (a, b) {
+          return a.entries.first.key.compareTo(b.entries.first.key);
+        },
+      );
+
+      return Right(list);
     });
   }
 }

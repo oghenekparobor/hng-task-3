@@ -15,9 +15,9 @@ class HomeService with ChangeNotifier {
 
   final CountriesUsecase countriesUsecase;
 
-  List? _countries = [];
+  List<Map<String, List>>? _countries = [];
 
-  List? get countries => _countries;
+  List<Map<String, List>>? get countries => _countries;
 
   Future<void> getCountries() async {
     _countries = [];

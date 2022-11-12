@@ -70,38 +70,52 @@ class _HomeState extends State<Home> {
                       )
                     : ListView(
                         children: [
-                          for (var e in value.countries!)
-                            ListTile(
-                              onTap: () => Navigator.of(context)
-                                  .pushNamed(Routes.more, arguments: e),
-                              contentPadding: EdgeInsets.zero,
-                              leading: ClipRRect(
-                                borderRadius: BorderRadius.circular(10.r),
-                                child: FancyShimmerImage(
-                                  imageUrl: e['flags']['png'],
-                                  boxFit: BoxFit.cover,
-                                  shimmerBackColor: Colors.grey.shade600,
-                                  shimmerBaseColor: Colors.grey.shade100,
-                                  errorWidget: Image.network(
-                                    'https://aeroclub-issoire.fr/wp-content/uploads/2020/05/image-not-found-300x225.jpg',
-                                    fit: BoxFit.cover,
-                                  ),
-                                  height: 40.h,
-                                  width: 40.w,
+                          for (var t in value.countries!)
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                SizedBox(height: 16.h),
+                                Text(
+                                  t.entries.first.key,
+                                  style: Theme.of(context).textTheme.bodyText1,
                                 ),
-                              ),
-                              title: Text(
-                                e['name']['official'],
-                                style: Theme.of(context).textTheme.bodyText2,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              subtitle: Text(
-                                e['name']['common'],
-                                style: Theme.of(context).textTheme.bodyText1,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                                const SizedBox(height: 8),
+                                for (var e in (t.entries.first.value))
+                                  ListTile(
+                                    onTap: () => Navigator.of(context)
+                                        .pushNamed(Routes.more, arguments: e),
+                                    contentPadding: EdgeInsets.zero,
+                                    leading: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10.r),
+                                      child: FancyShimmerImage(
+                                        imageUrl: e['flags']['png'],
+                                        boxFit: BoxFit.cover,
+                                        shimmerBackColor: Colors.grey.shade600,
+                                        shimmerBaseColor: Colors.grey.shade100,
+                                        errorWidget: Image.network(
+                                          'https://aeroclub-issoire.fr/wp-content/uploads/2020/05/image-not-found-300x225.jpg',
+                                          fit: BoxFit.cover,
+                                        ),
+                                        height: 40.h,
+                                        width: 40.w,
+                                      ),
+                                    ),
+                                    title: Text(
+                                      e['name']['common'],
+                                      style:
+                                          Theme.of(context).textTheme.bodyText2,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    subtitle: Text(
+                                      e['name']['official'],
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                              ],
                             )
                         ],
                       ),
