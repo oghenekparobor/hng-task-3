@@ -43,8 +43,10 @@ _i1.GetIt $initGetIt(
       () => _i7.RemoteDSImpl(requester: get<_i6.NetworkRequester>()));
   gh.lazySingleton<_i8.ImplFormatter>(
       () => _i8.ImplFormatter(networkInfo: get<_i5.NetworkInfo>()));
-  gh.lazySingleton<_i9.HomeRepo>(
-      () => _i10.HomeRepoImpl(formatter: get<_i8.ImplFormatter>()));
+  gh.lazySingleton<_i9.HomeRepo>(() => _i10.HomeRepoImpl(
+        formatter: get<_i8.ImplFormatter>(),
+        remoteDS: get<_i7.RemoteDS>(),
+      ));
   gh.lazySingleton<_i11.CountriesUsecase>(
       () => _i11.CountriesUsecase(repo: get<_i9.HomeRepo>()));
   gh.factory<_i12.HomeService>(

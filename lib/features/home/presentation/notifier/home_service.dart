@@ -15,11 +15,13 @@ class HomeService with ChangeNotifier {
 
   final CountriesUsecase countriesUsecase;
 
-  var _countries = [];
+  List? _countries = [];
 
-  List get countries => _countries;
+  List? get countries => _countries;
 
   Future<void> getCountries() async {
+    _countries = [];
+
     AppLoader().show();
 
     var data = await countriesUsecase.call(const NoParams());
@@ -27,13 +29,15 @@ class HomeService with ChangeNotifier {
     data.fold(
       (l) {
         MyToast().toast(l);
+
+        _countries = null;
       },
       (r) {
-        Navigator.of(navKey.currentContext!).pop();
-
         _countries = r;
 
         notifyListeners();
+
+        Navigator.of(navKey.currentContext!).pop();
       },
     );
   }

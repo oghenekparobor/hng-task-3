@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hng_task_3/config/route/route.dart';
 import 'package:hng_task_3/config/theme/theme.dart';
@@ -12,10 +13,13 @@ import 'features/home/presentation/notifier/home_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+
+  await dotenv.load();
 
   await configureDependencies();
   runApp(const MyApp());

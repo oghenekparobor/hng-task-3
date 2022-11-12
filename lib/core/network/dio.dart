@@ -15,7 +15,6 @@ class NetworkRequester {
     bool isProtected = true,
     bool isFormData = false,
   }) async {
-
     var response = await dio.get(
       '${dotenv.env['BASE_URL']}$endpoint',
       options: Options(headers: {
@@ -32,7 +31,6 @@ class NetworkRequester {
     bool isFormData = false,
     required Map<String, dynamic> data,
   }) async {
-
     var response = await dio.post(
       '${dotenv.env['BASE_URL']}$endpoint',
       data: isFormData ? FormData.fromMap(data) : data,
@@ -50,7 +48,6 @@ class NetworkRequester {
     bool isFormData = false,
     required Map<String, dynamic> data,
   }) async {
-
     var response = await dio.patch(
       '${dotenv.env['BASE_URL']}$endpoint',
       data: isFormData ? FormData.fromMap(data) : data,
@@ -67,7 +64,6 @@ class NetworkRequester {
     bool isProtected = true,
     bool isFormData = false,
   }) async {
-
     var response = await dio.delete(
       '${dotenv.env['BASE_URL']}$endpoint',
       options: Options(headers: {
