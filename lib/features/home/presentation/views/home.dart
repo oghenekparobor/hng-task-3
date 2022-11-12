@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hng_task_3/core/constants-n-assets/assets.dart';
 
+import '../../../../config/route/route.dart';
 import '../widgets/filter.dart';
 
 class Home extends StatelessWidget {
@@ -45,6 +46,7 @@ class Home extends StatelessWidget {
               child: ListView(
                 children: [
                   ListTile(
+                    onTap: () => Navigator.of(context).pushNamed(Routes.more),
                     contentPadding: EdgeInsets.zero,
                     leading: Container(
                       width: 40.w,
