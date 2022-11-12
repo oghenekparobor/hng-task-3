@@ -72,8 +72,8 @@ class _HomeState extends State<Home> {
                         children: [
                           for (var e in value.countries!)
                             ListTile(
-                              onTap: () =>
-                                  Navigator.of(context).pushNamed(Routes.more),
+                              onTap: () => Navigator.of(context)
+                                  .pushNamed(Routes.more, arguments: e),
                               contentPadding: EdgeInsets.zero,
                               leading: ClipRRect(
                                 borderRadius: BorderRadius.circular(10.r),

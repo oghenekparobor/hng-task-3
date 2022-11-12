@@ -1,17 +1,22 @@
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 
 class Details extends StatelessWidget {
   const Details({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var country = ModalRoute.of(context)!.settings.arguments;
+    var numb = NumberFormat();
+
+    var country =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
 
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Country',
+          country['name']['common'],
           style: Theme.of(context).textTheme.bodyText1,
         ),
         centerTitle: true,
@@ -27,9 +32,19 @@ class Details extends StatelessWidget {
                 child: Stack(
                   children: [
                     PageView(
-                      children: const [
-                        Placeholder(),
-                        Placeholder(),
+                      children: [
+                        FancyShimmerImage(
+                          imageUrl: country['flags']['png'],
+                          boxFit: BoxFit.cover,
+                          shimmerBackColor: Colors.grey.shade600,
+                          shimmerBaseColor: Colors.grey.shade100,
+                          errorWidget: Image.network(
+                            'https://aeroclub-issoire.fr/wp-content/uploads/2020/05/image-not-found-300x225.jpg',
+                            fit: BoxFit.cover,
+                          ),
+                          height: 40.h,
+                          width: 40.w,
+                        ),
                       ],
                     ),
                     Align(
@@ -63,7 +78,7 @@ class Details extends StatelessWidget {
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
                   TextSpan(
-                    text: '',
+                    text: numb.format(country['population']),
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                 ],
@@ -81,7 +96,7 @@ class Details extends StatelessWidget {
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
                   TextSpan(
-                    text: '',
+                    text: country['region'],
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                 ],
@@ -99,7 +114,7 @@ class Details extends StatelessWidget {
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
                   TextSpan(
-                    text: '',
+                    text: (country['capital'] as List).first,
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                 ],
@@ -134,10 +149,11 @@ class Details extends StatelessWidget {
                         .bodyText1!
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
-                  TextSpan(
-                    text: '',
-                    style: Theme.of(context).textTheme.bodyText1,
-                  ),
+                  for (var l in (country['languages'] as Map).entries)
+                    TextSpan(
+                      text: '${l.value}, ',
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
                 ],
               ),
             ),
@@ -152,10 +168,11 @@ class Details extends StatelessWidget {
                         .bodyText1!
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
-                  TextSpan(
-                    text: '',
-                    style: Theme.of(context).textTheme.bodyText1,
-                  ),
+                  for (var i in (country['demonyms'] as Map).entries)
+                    TextSpan(
+                      text: '${(i.value as Map).entries.first.value}, ',
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
                 ],
               ),
             ),
