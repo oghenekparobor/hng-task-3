@@ -55,7 +55,7 @@ class Filters extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  const Icon(Icons.filter),
+                  const Icon(Icons.filter_list),
                   SizedBox(width: 8.w),
                   Text(
                     'Filter',
