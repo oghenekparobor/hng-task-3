@@ -24,29 +24,30 @@ class HomeRepoImpl implements HomeRepo {
     });
 
     return res.fold((l) => Left(l), (r) {
-      var list = <Map<String, List>>[];
-
-      var group = groupBy(
-        r,
-        (dynamic p0) => p0['name']['common'].split('').first,
-      );
-
-      Logger().d(group.entries.last);
-
-      group.forEach((key, value) {
-        value.sort(
-            ((a, b) => a['name']['common'].compareTo(b['name']['common'])));
-
-        list.add({key: value});
-      });
-
-      list.sort(
-        (a, b) {
-          return a.entries.first.key.compareTo(b.entries.first.key);
-        },
-      );
-
-      return Right(list);
+      return Right(grouping(r));
     });
   }
+}
+
+List<Map<String, List>> grouping(List l) {
+  var list = <Map<String, List>>[];
+
+  var group = groupBy(
+    l,
+    (dynamic p0) => p0['name']['common'].split('').first,
+  );
+
+  group.forEach((key, value) {
+    value.sort(((a, b) => a['name']['common'].compareTo(b['name']['common'])));
+
+    list.add({key: value});
+  });
+
+  list.sort(
+    (a, b) {
+      return a.entries.first.key.compareTo(b.entries.first.key);
+    },
+  );
+
+  return list;
 }

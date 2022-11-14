@@ -56,6 +56,7 @@ class _HomeState extends State<Home> {
                   prefixIcon: const Icon(Icons.search),
                   hintText: 'Search Country',
                 ),
+                onChanged: (v) => value.searchCounrttry(v),
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyText1,
               ),
