@@ -120,12 +120,10 @@ class HomeService with ChangeNotifier {
   void showResult() {
     var d = [];
 
-    if (_all.any((e) => (c.contains((e['continents'] as List).first) ||
-        t.contains((e['timezones'] as List).first)))) {
+    if (_all.any((e) => (c.contains((e['continents'] as List).first)))) {
       print(true);
-      d.add(_all.firstWhere((e) =>
-          (c.contains((e['continents'] as List).first) &&
-              t.contains((e['timezones'] as List).first))));
+      d.add(_all
+          .firstWhere((e) => (c.contains((e['continents'] as List).first))));
     } else {
       print(false);
     }
