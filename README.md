@@ -43,3 +43,7 @@ It was used to give off shimmer while image loads up to enhance/increase user ex
 
 #### App
 [View on Appetize]()
+
+#### Lesson learn
+- Avoid last minute
+- MTN will fustrate you truly.

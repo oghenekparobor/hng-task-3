@@ -79,6 +79,7 @@ class Filters extends StatelessWidget {
           topRight: Radius.circular(30.r),
         ),
       ),
+      backgroundColor: Theme.of(navKey.currentContext!).backgroundColor,
       isScrollControlled: true,
       builder: (co) => Consumer<HomeService>(
         builder: (context, value, child) => Padding(
@@ -92,7 +93,9 @@ class Filters extends StatelessWidget {
                     Text(
                       'Filter',
                       style: Theme.of(co).textTheme.bodyText1!.copyWith(
-                          fontSize: 20.sp, fontWeight: FontWeight.bold),
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
                     ),
                     const Spacer(),
                     IconButton(
@@ -117,7 +120,10 @@ class Filters extends StatelessWidget {
                           horizontal: 10.w,
                           vertical: 0,
                         ),
-                        title: Text(c),
+                        title: Text(
+                          c,
+                          style: Theme.of(context).textTheme.bodyText1,
+                        ),
                         trailing: Checkbox(
                           value: value.checkC(c),
                           onChanged: (_) => value.arC(c),
@@ -142,7 +148,10 @@ class Filters extends StatelessWidget {
                           horizontal: 10.w,
                           vertical: 0,
                         ),
-                        title: Text(t),
+                        title: Text(
+                          t,
+                          style: Theme.of(context).textTheme.bodyText1,
+                        ),
                         trailing: Checkbox(
                           value: value.checkT(t),
                           onChanged: (_) => value.arT(t),

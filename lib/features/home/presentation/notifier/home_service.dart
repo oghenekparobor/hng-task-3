@@ -1,4 +1,3 @@
-import 'package:dartz/dartz_unsafe.dart';
 import 'package:flutter/material.dart';
 import 'package:hng_task_3/core/usecases/usecases.dart';
 import 'package:hng_task_3/core/util/loader.dart';
