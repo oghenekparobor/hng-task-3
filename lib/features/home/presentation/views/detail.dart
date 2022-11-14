@@ -20,7 +20,9 @@ class Details extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyText1,
         ),
         centerTitle: true,
+        iconTheme: Theme.of(context).iconTheme,
       ),
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: ListView(

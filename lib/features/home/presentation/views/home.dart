@@ -29,7 +29,11 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Image.asset(kLogo, scale: 2),
+        title: Image.asset(
+          kLogo,
+          scale: 2,
+          color: Theme.of(context).iconTheme.color,
+        ),
         centerTitle: false,
         actions: [
           IconButton(
@@ -38,6 +42,7 @@ class _HomeState extends State<Home> {
           )
         ],
       ),
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Consumer<HomeService>(
         builder: (context, value, child) => Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
