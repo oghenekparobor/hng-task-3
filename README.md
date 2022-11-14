@@ -42,7 +42,7 @@ It was used to give off shimmer while image loads up to enhance/increase user ex
 
 
 #### App
-[View on Appetize]()
+[View on Appetize](https://appetize.io/app/ldjlwxidhwssa3unuhruevpd4a)
 
 #### Lesson learn
 - Avoid last minute
