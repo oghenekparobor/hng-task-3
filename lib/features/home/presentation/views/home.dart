@@ -35,12 +35,6 @@ class _HomeState extends State<Home> {
           color: Theme.of(context).iconTheme.color,
         ),
         centerTitle: false,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.dark_mode),
-          )
-        ],
       ),
       backgroundColor: Theme.of(context).backgroundColor,
       body: Consumer<HomeService>(
