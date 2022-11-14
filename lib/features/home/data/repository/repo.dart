@@ -51,3 +51,35 @@ List<Map<String, List>> grouping(List l) {
 
   return list;
 }
+
+List<Map<String, List>> groupingTimezone(List l) {
+  var list = <Map<String, List>>[];
+  l.retainWhere((e) => e['timezones'] != null);
+
+  var group = groupBy(
+    l,
+    (dynamic p0) => (p0['timezones'] as List).first,
+  );
+
+  group.forEach((key, value) {
+    list.add({key: value});
+  });
+
+  return list;
+}
+
+List<Map<String, List>> groupingContinent(List l) {
+  var list = <Map<String, List>>[];
+  l.retainWhere((e) => e['continents'] != null);
+
+  var group = groupBy(
+    l,
+    (dynamic p0) => ((p0['continents'] as List).first),
+  );
+
+  group.forEach((key, value) {
+    list.add({key: value});
+  });
+
+  return list;
+}
