@@ -114,20 +114,23 @@ class HomeService with ChangeNotifier {
     _countries = grouping(_all);
 
     notifyListeners();
+    Navigator.of(navKey.currentContext!).pop();
   }
 
   void showResult() {
     var d = [];
 
-    if (_all.any((e) => (c.contains((e['continents'] as List).first)))) {
-      print(true);
-      d.add(_all
-          .firstWhere((e) => (c.contains((e['continents'] as List).first))));
-    } else {
-      print(false);
+    for (var e in _all) {
+      if (c.contains((e['continents'] as List).first) ||
+          t.contains((e['timezones'] as List).first)) {
+        d.add(e);
+      }
     }
-    Logger().d(d);
+
+    _countries = grouping(d);
 
     notifyListeners();
+
+    Navigator.of(navKey.currentContext!).pop();
   }
 }
